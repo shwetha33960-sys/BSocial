@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | BSocial</title>
+    <style>
+        body { margin: 0; font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #f8fafc 0%, #eef4ff 100%); color: #111827; min-height: 100vh; display: grid; place-items: center; padding: 24px; }
+        .card { width: min(100%, 700px); padding: 36px; border-radius: 24px; background: white; box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12); }
+        h1 { margin-top: 0; }
+        p { line-height: 1.7; color: #6b7280; }
+        .actions { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 12px; }
+        .actions a { text-decoration: none; padding: 12px 16px; border-radius: 999px; font-weight: 700; color: white; background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%); }
+        .actions .secondary { background: #e5e7eb; color: #111827; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Welcome, {{ request.user.get_full_name|default:request.user.username }}.</h1>
+        <p>Your account is now active. This dashboard is ready for your posts, conversations, and community updates.</p>
+        <div class="actions">
+            <a href="{% url 'accounts:signout' %}">Sign Out</a>
+            <a class="secondary" href="{% url 'landing' %}">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>

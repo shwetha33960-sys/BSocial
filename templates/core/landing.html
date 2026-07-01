@@ -16,7 +16,7 @@
                 <a href="#features">Features</a>
                 <a href="#about">About</a>
             </nav>
-            <a class="nav-cta" href="#about">Sign In</a>
+            <a class="nav-cta" href="{% url 'accounts:signin' %}">Sign In</a>
         </div>
     </header>
 
@@ -29,7 +29,7 @@
                     <p class="hero-text">
                         BSocial is a modern platform where people connect, share ideas, and build vibrant communities in one beautiful space.
                     </p>
-                    <a class="btn btn-primary" href="#features">Get Started</a>
+                    <a class="btn btn-primary" href="{% url 'accounts:signup' %}">Get Started</a>
                 </div>
 
                 <div class="hero-visual" aria-hidden="true">
