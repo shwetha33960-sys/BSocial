@@ -1,23 +1,128 @@
-{% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BSocial | Where Every Connection Matters</title>
-
-    <link rel="stylesheet" href="{% static 'css/landing.css' %}">
+    <title>BSocial | Connect. Share. Inspire.</title>
+    <meta name="description" content="BSocial is a modern social networking platform for meaningful connections and creative communities.">
+    <link rel="stylesheet" href="/static/css/landing.css">
 </head>
 <body>
+    <header class="site-header">
+        <div class="container nav-bar">
+            <a class="logo" href="#home">BSocial</a>
+            <nav class="nav-links" aria-label="Primary navigation">
+                <a href="#home">Home</a>
+                <a href="#features">Features</a>
+                <a href="#about">About</a>
+            </nav>
+            <a class="nav-cta" href="#about">Sign In</a>
+        </div>
+    </header>
 
-    <h1>Welcome to BSocial</h1>
+    <main id="home">
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <p class="eyebrow">A fresh space for meaningful connections</p>
+                    <h1>Connect. Share. Inspire.</h1>
+                    <p class="hero-text">
+                        BSocial is a modern platform where people connect, share ideas, and build vibrant communities in one beautiful space.
+                    </p>
+                    <a class="btn btn-primary" href="#features">Get Started</a>
+                </div>
 
-    <h2>Where Every Connection Matters</h2>
+                <div class="hero-visual" aria-hidden="true">
+                    <div class="visual-card">
+                        <div class="mini-pill">
+                            <span class="mini-icon">✦</span>
+                            <span>Live conversations</span>
+                        </div>
+                        <div class="mini-pill alt">
+                            <span class="mini-icon">💬</span>
+                            <span>Private groups</span>
+                        </div>
+                        <div class="mini-pill">
+                            <span class="mini-icon">⚡</span>
+                            <span>Instant sharing</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <p>
-        Connect. Share. Discover.
-    </p>
+        <section id="features" class="section">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">Why people love BSocial</p>
+                    <h2>Everything you need to stay connected</h2>
+                </div>
 
+                <div class="features-grid">
+                    <article class="feature-card">
+                        <div class="feature-icon">📝</div>
+                        <h3>Share Posts</h3>
+                        <p>Post updates, photos, and ideas in a clean feed built for creativity and conversation.</p>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-icon">🤝</div>
+                        <h3>Connect with Friends</h3>
+                        <p>Build lasting relationships by discovering people, communities, and shared interests.</p>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h3>Secure Messaging</h3>
+                        <p>Enjoy private conversations with a safe, dependable experience for everyday communication.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section about-section">
+            <div class="container about-grid">
+                <div>
+                    <p class="eyebrow">About BSocial</p>
+                    <h2>Built for communication, creativity, and community.</h2>
+                </div>
+                <div class="about-copy">
+                    <p>
+                        BSocial is a modern social networking platform designed to make everyday connection effortless. Whether you are sharing your latest ideas, chatting with friends, or growing a community, BSocial brings everything together in one polished experience.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <a class="logo footer-logo" href="#home">BSocial</a>
+                <p>Connecting people through thoughtful conversations and shared experiences.</p>
+            </div>
+
+            <div>
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4>Social</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>© 2026 BSocial. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>
