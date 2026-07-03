@@ -1,3 +1,4 @@
+from .models import Profile
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
@@ -56,3 +57,18 @@ class ForgotPasswordForm(forms.Form):
         if email and not User.objects.filter(email__iexact=email).exists():
             raise forms.ValidationError("No account exists with this email.")
         return email
+    
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = [
+            "profile_picture",
+            "bio",
+            "location",
+            "date_of_birth",
+            "gender",
+        ]
+
+        widgets = {
+            "date_of_birth": forms.DateInput(attrs={"type": "date"}),
+        }

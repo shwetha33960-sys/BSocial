@@ -1,9 +1,10 @@
+from .models import Profile
 from django.contrib import messages
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 
-from .forms import ForgotPasswordForm, SignInForm, SignUpForm
+from .forms import ForgotPasswordForm, SignInForm, SignUpForm, ProfileForm
 
 
 def signup_view(request):
@@ -36,7 +37,38 @@ def signin_view(request):
 
 @login_required(login_url="accounts:signin")
 def dashboard_view(request):
-    return render(request, "accounts/dashboard.html")
+    profile = Profile.objects.get(user=request.user)
+
+    context = {
+        "profile": profile,
+    }
+
+    return render(request, "accounts/dashboard.html", context)
+
+@login_required(login_url="accounts:signin")
+def edit_profile_view(request):
+    profile = request.user.profile
+
+    if request.method == "POST":
+        form = ProfileForm(
+            request.POST,
+            request.FILES,
+            instance=profile
+        )
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Profile updated successfully.")
+            return redirect("accounts:dashboard")
+
+    else:
+        form = ProfileForm(instance=profile)
+
+    return render(
+        request,
+        "accounts/edit_profile.html",
+        {"form": form}
+    )
 
 
 @login_required(login_url="accounts:signin")
