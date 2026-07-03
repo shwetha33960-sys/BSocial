@@ -3,6 +3,8 @@ from django.contrib import messages
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
+from posts.models import Post
+from posts.forms import PostForm
 
 from .forms import ForgotPasswordForm, SignInForm, SignUpForm, ProfileForm
 
@@ -37,10 +39,28 @@ def signin_view(request):
 
 @login_required(login_url="accounts:signin")
 def dashboard_view(request):
-    profile = Profile.objects.get(user=request.user)
+    profile = request.user.profile
+
+    if request.method == "POST":
+        form = PostForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+
+            messages.success(request, "Post published successfully!")
+            return redirect("accounts:dashboard")
+
+    else:
+        form = PostForm()
+
+    posts = Post.objects.select_related("author").all()
 
     context = {
         "profile": profile,
+        "form": form,
+        "posts": posts,
     }
 
     return render(request, "accounts/dashboard.html", context)

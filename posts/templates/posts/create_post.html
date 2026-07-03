@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Post | BSocial</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Poppins,sans-serif;
+        }
+
+        body{
+            background:linear-gradient(135deg,#f8fafc,#eef4ff);
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            min-height:100vh;
+            padding:20px;
+        }
+
+        .card{
+            width:100%;
+            max-width:700px;
+            background:white;
+            border-radius:20px;
+            padding:35px;
+            box-shadow:0 20px 45px rgba(0,0,0,.12);
+        }
+
+        h1{
+            margin-bottom:25px;
+            text-align:center;
+            color:#111827;
+        }
+
+        form{
+            display:flex;
+            flex-direction:column;
+            gap:18px;
+        }
+
+        label{
+            font-weight:600;
+            color:#374151;
+        }
+
+        textarea,
+        input[type=file]{
+            width:100%;
+            padding:12px;
+            border:1px solid #d1d5db;
+            border-radius:12px;
+            font-size:15px;
+        }
+
+        textarea{
+            resize:none;
+            min-height:140px;
+        }
+
+        .buttons{
+            display:flex;
+            gap:12px;
+            margin-top:15px;
+        }
+
+        button,
+        a{
+            text-decoration:none;
+            border:none;
+            cursor:pointer;
+            padding:12px 18px;
+            border-radius:999px;
+            font-weight:700;
+            font-size:15px;
+        }
+
+        button{
+            background:linear-gradient(135deg,#2563eb,#7c3aed);
+            color:white;
+        }
+
+        .cancel{
+            background:#e5e7eb;
+            color:#111827;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+
+<h1>Create Post</h1>
+
+<form method="POST" enctype="multipart/form-data">
+
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <div class="buttons">
+
+        <button type="submit">
+            Publish Post
+        </button>
+
+        <a href="{% url 'accounts:dashboard' %}" class="cancel">
+            Cancel
+        </a>
+
+    </div>
+
+</form>
+
+</div>
+
+</body>
+</html>
