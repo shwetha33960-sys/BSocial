@@ -4,7 +4,7 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from posts.models import Post
-from posts.forms import PostForm
+from posts.forms import PostForm, CommentForm
 
 from .forms import ForgotPasswordForm, SignInForm, SignUpForm, ProfileForm
 
@@ -58,10 +58,11 @@ def dashboard_view(request):
     posts = Post.objects.select_related("author").all()
 
     context = {
-        "profile": profile,
-        "form": form,
-        "posts": posts,
-    }
+    "profile": profile,
+    "form": form,
+    "comment_form": CommentForm(),
+    "posts": posts,
+}
 
     return render(request, "accounts/dashboard.html", context)
 

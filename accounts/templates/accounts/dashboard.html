@@ -1,206 +1,196 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BSocial | Home</title>
+{% extends "base.html" %}
+{% load static %}
 
-    <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:Poppins,sans-serif;
-        }
+{% block content %}
 
-        body{
-            background:#f3f4f6;
-        }
+<style>
+.dashboard {
+    display: grid;
+    grid-template-columns: 250px 1fr 250px;
+    gap: 20px;
+    align-items: start;
+}
 
-        .navbar{
-            background:white;
-            padding:18px 40px;
-            box-shadow:0 2px 10px rgba(0,0,0,.08);
-            font-size:26px;
-            font-weight:bold;
-            color:#2563eb;
-        }
-        .container{
-            width:90%;
-            max-width:650px;
-            margin:35px auto;
-            max-height:calc(100vh - 150px);
-        }
+/* LEFT */
+.left-card {
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    text-align: center;
+}
 
-        .card{
-            background:white;
-            padding:25px;
-            border-radius:18px;
-            box-shadow:0 10px 25px rgba(0,0,0,.08);
-            margin-bottom:25px;
-        }
+.left-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
 
-        h2{
-            margin-bottom:15px;
-        }
+.left-card h3 {
+    margin: 10px 0 5px;
+}
 
-        textarea,
-        input[type=file]{
-            width:100%;
-            padding:12px;
-            margin-top:8px;
-            border:1px solid #d1d5db;
-            border-radius:10px;
-            font-size:15px;
-        }
+.left-card a {
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #2563eb;
+}
 
-        textarea{
-            resize:none;
-        }
+/* CENTER */
+.center {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 
-        button{
-            margin-top:15px;
-            padding:12px 25px;
-            border:none;
-            border-radius:999px;
-            background:linear-gradient(135deg,#2563eb,#7c3aed);
-            color:white;
-            font-size:15px;
-            font-weight:bold;
-            cursor:pointer;
-        }
+.post-box {
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
 
-        .profile{
-            display:flex;
-            align-items:center;
-            gap:20px;
-        }
+.post-box textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
 
-        .profile img{
-            width:90px;
-            height:90px;
-            border-radius:50%;
-            object-fit:cover;
-        }
+.post-box input {
+    margin-top: 10px;
+}
 
-        .avatar{
-            width:90px;
-            height:90px;
-            border-radius:50%;
-            background:#dbeafe;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            font-size:36px;
-            color:#2563eb;
-            font-weight:bold;
-        }
+.post-box button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: none;
+    background: #2563eb;
+    color: white;
+    border-radius: 999px;
+    cursor: pointer;
+}
 
-        .post{
-            margin-top:15px;
-            border-top:1px solid #e5e7eb;
-            padding-top:15px;
-        }
+/* FEED */
+.post {
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
 
-        .post img{
-            width:100%;
-            margin-top:15px;
-            border-radius:12px;
-        }
+.post img {
+    width: 100%;
+    border-radius: 12px;
+    margin-top: 10px;
+}
 
-        .time{
-            color:gray;
-            font-size:13px;
-            margin-top:5px;
-            margin-bottom:12px;
-        }
+.like-btn {
+    text-decoration: none;
+    color: #2563eb;
+    font-weight: bold;
+}
 
-        .logout{
-            float:right;
-            text-decoration:none;
-            color:red;
-            font-size:15px;
-        }
+.comments {
+    margin-top: 20px;
+    border-top: 1px solid #ddd;
+    padding-top: 15px;
+}
 
-    </style>
-</head>
+.comment {
+    margin-bottom: 10px;
+}
 
-<body>
+.comment-form {
+    margin-top: 15px;
+}
 
-<div class="navbar">
-    BSocial
+.comment-form input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+}
 
-    <a class="logout" href="{% url 'accounts:signout' %}">
-        Sign Out
-    </a>
-</div>
+.comment-form button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 999px;
+    background: #2563eb;
+    color: white;
+    cursor: pointer;
+}
 
-<div class="container">
+/* RIGHT */
+.right-card {
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
 
-    <div class="card">
+@media (max-width: 900px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+}
 
-        <div class="profile">
+</style>
 
-            {% if profile.profile_picture %}
-                <img src="{{ profile.profile_picture.url }}">
-            {% else %}
-                <div class="avatar">
-                    {{ request.user.username|first|upper }}
-                </div>
-            {% endif %}
+<div class="dashboard">
 
-            <div>
-                <h2>{{ request.user.first_name }}</h2>
+    <!-- LEFT -->
+    <div class="left-card">
 
-                <p>{{ profile.bio|default:"No bio yet." }}</p>
+        {% if profile.profile_picture %}
+            <img src="{{ profile.profile_picture.url }}">
+        {% else %}
+            <div style="width:80px;height:80px;border-radius:50%;background:#ddd;margin:auto;"></div>
+        {% endif %}
 
-                <p>{{ profile.location }}</p>
+        <h3>{{ request.user.username }}</h3>
 
-                <br>
+        <p>{{ profile.bio|default:"No bio yet" }}</p>
 
-                <a href="{% url 'accounts:edit_profile' %}">
-                    Edit Profile
-                </a>
-
-            </div>
-
-        </div>
+        <a href="{% url 'accounts:edit_profile' %}">
+            Edit Profile
+        </a>
 
     </div>
 
+    <!-- CENTER -->
+    <div class="center">
 
-    <div class="card">
+        <!-- CREATE POST -->
+        <div class="post-box">
 
-        <h2>Create a Post</h2>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
 
-        <form method="POST" enctype="multipart/form-data">
+                {{ form.caption }}
 
-            {% csrf_token %}
+                {{ form.image }}
 
-            {{ form.as_p }}
+                <button type="submit">
+                    Publish
+                </button>
 
-            <button type="submit">
-                Publish Post
-            </button>
-
-        </form>
-
-    </div>
-
-
-    {% for post in posts %}
-
-    <div class="card">
-
-        <h3>{{ post.author.first_name|default:post.author.username }}</h3>
-
-        <div class="time">
-
-            {{ post.created_at }}
+            </form>
 
         </div>
+
+        <!-- FEED -->
+
+        {% for post in posts %}
 
         <div class="post">
+
+            <h4>{{ post.author.username }}</h4>
+
+            <small>{{ post.created_at }}</small>
 
             <p>{{ post.caption }}</p>
 
@@ -208,23 +198,85 @@
                 <img src="{{ post.image.url }}">
             {% endif %}
 
+            <br><br>
+
+            <a class="like-btn" href="{% url 'posts:like_post' post.id %}">
+                ❤️ Like ({{ post.likes.count }})
+            </a>
+            {% if request.user == post.author %}
+
+    <br><br>
+
+    <a href="{% url 'posts:edit_post' post.id %}">
+        ✏️ Edit
+    </a>
+
+    |
+
+    <a
+        href="{% url 'posts:delete_post' post.id %}"
+        onclick="return confirm('Are you sure you want to delete this post?');"
+        style="color:red;"
+    >
+        🗑 Delete
+    </a>
+
+{% endif %}
+
+            <div class="comments">
+
+                <h4>Comments</h4>
+
+                {% for comment in post.comments.all %}
+
+                    <div class="comment">
+                        <strong>{{ comment.author.username }}</strong> :
+                        {{ comment.text }}
+                    </div>
+
+                {% empty %}
+
+                    <p>No comments yet.</p>
+
+                {% endfor %}
+
+                <form class="comment-form" method="POST" action="{% url 'posts:add_comment' post.id %}">
+
+                    {% csrf_token %}
+
+                    {{ comment_form.text }}
+
+                    <button type="submit">
+                        Comment
+                    </button>
+
+                </form>
+
+            </div>
+
         </div>
 
+        {% empty %}
+
+        <div class="post">
+
+            <h3>No posts yet 🚀</h3>
+
+        </div>
+
+        {% endfor %}
+
     </div>
 
-    {% empty %}
+    <!-- RIGHT -->
+    <div class="right-card">
 
-    <div class="card">
+        <h3>Suggestions</h3>
 
-        <h3>No posts yet.</h3>
-
-        <p>Be the first person to post on BSocial! 🚀</p>
+        <p>Coming Soon 🔥</p>
 
     </div>
-
-    {% endfor %}
 
 </div>
 
-</body>
-</html>
+{% endblock %}
